@@ -5,7 +5,7 @@ import RequestDB from '../db/db';
 
 class GetService {
 
-    async getFriends(data: GetUsersQuery) {
+    async getFriends(data: GetUsersQuery): Promise<SendMessage> {
         switch (data.action) {
             case 'count': {
                 if (data.params !== null) {
@@ -26,9 +26,9 @@ class GetService {
                 if (data.params !== null) {
                     const items: any = await RequestDB.getFriends();
                     const page: string = data.params + '0';
-                    const itemsPage: number = +page - 10;
+                    const itemsPage: number = +page - 5;
                     const send: SendMessage = {
-                        items: [...items.slice(+page - 10, itemsPage === 0 ? 10 : +page + 10)],
+                        items: [...items.slice(+page - 5, itemsPage === 0 ? 5 : +page + 5)],
                         count: items.length,
                         error: null
                     };
@@ -88,7 +88,7 @@ class GetService {
                     }
                 });
                 const send: SendMessage = {
-                    items: [...items.slice(0, 10)],
+                    items: [...items.slice(0, 5)],
                     count: items.length,
                     error: null
                 };
