@@ -12,6 +12,16 @@ export type ItemsType = {
     followed: boolean
 };
 
+export type ItemsDBType = {
+    name: string,
+    id: string,
+    uniqueUrlName: Nullable<string>,
+    small: Nullable<string>,
+    large: Nullable<string>,
+    status: Nullable<string>,
+    followed: number
+};
+
 export type SendMessage = {
     items: ItemsType[],
     count: number,
